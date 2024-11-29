@@ -9,8 +9,14 @@ include_once("framework/view.fw.php");
 ///////////////////////////////////////////////////////
 
 // 
-
-////////////////////////////////////////////////////////////////////////////
+$login = "";
+$mdp = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $login = htmlspecialchars($_POST['login'] ?? "");
+  $mdp = htmlspecialchars($_POST['password'] ?? "");
+}
+$connected = ($login == "tristan" && $mdp == "charavel");
+$_SESSION['connected'] = $connected;
 // Construction de la vue
 ////////////////////////////////////////////////////////////////////////////
 $view = new View();

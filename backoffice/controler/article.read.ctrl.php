@@ -4,7 +4,7 @@
 // Inclusion du framework
 include_once("framework/view.fw.php");
 // Inclusion du modèle
-include_once("model/Article.class.php");
+include_once("model/article.class.php");
 // Nom du répertoire ou stocker les images téléchargées
 $imgPath = "/public/img/";
 
@@ -12,6 +12,10 @@ $imgPath = "/public/img/";
 ///////////////////////////////////////////////////////
 // A COMPLETER
 ///////////////////////////////////////////////////////
+
+$view = new View();
+
+$view->display('article.read');
 
 // 
 ?>

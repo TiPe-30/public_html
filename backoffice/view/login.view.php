@@ -14,7 +14,7 @@
   </header>
   <aside>
     <!-- Menu -->
-    <?php include(__DIR__ . '/menu.viewpart.php'); ?>
+    <?php include (__DIR__ . '/menu.viewpart.php'); ?>
   </aside>
   <main>
     <h2>Login</h2>
