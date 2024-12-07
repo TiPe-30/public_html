@@ -1,0 +1,11 @@
+<?php
+// API de type REST qui envoit une salutation à la personne 
+
+// 
+///////////////////////////////////////////////////////
+// A COMPLETER
+///////////////////////////////////////////////////////
+$value_nom = $_GET['nom'] ?? "aucun";
+print("Hello $value_nom !");
+// 
+?>
