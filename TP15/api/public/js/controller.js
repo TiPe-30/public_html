@@ -5,11 +5,11 @@ import model from "./model.js";
 
 // Callback pour la réaction du modèle
 function onAnswser(text) {
-    / 
+    
     ///////////////////////////////////////////////////////
     // A COMPLETER
     ///////////////////////////////////////////////////////
-
+    
     // 
 }
 
@@ -25,3 +25,4 @@ function onSaluer() {
 
 // Attache le controleur au bouton
 view.addEventListener(onSaluer);
+model.saluer("onAnswer",onAnswser);
