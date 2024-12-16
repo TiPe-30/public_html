@@ -30,6 +30,24 @@ if (! isset($_GET['action'])) {
                 $out['error'] = $e->getMessage();
             }
             break;
+        case 'readLike':
+            $nom = $_GET['nom'] ?? '';
+            
+            if ($nom == '') {
+                $out['error'] = "nom missing for read";
+                break;
+            }
+
+            try{
+                $contacts = Contact::readLike($nom);
+                // Passe tous les objets en résultat
+                $out['contacts'] = $contacts;
+            }catch (Exception $e) {
+                // Retourne le message d'erreur
+                $out['error'] = $e->getMessage();
+            }
+
+            break;
             // 
             ///////////////////////////////////////////////////////
             //  A COMPLETER
@@ -39,7 +57,7 @@ if (! isset($_GET['action'])) {
             $out['error'] = "incorrect action '$action'";
     }
 }
-
+var_dump(json_encode($out['contacts']));
 // Sort la réponse
 // 
 ///////////////////////////////////////////////////////

@@ -20,11 +20,10 @@ class Contact implements JsonSerializable
 
 
   public function jsonSerialize(): mixed
-  { // 
-    ///////////////////////////////////////////////////////
-    //  A COMPLETER
-    ///////////////////////////////////////////////////////
-    // 
+  { 
+    // Nous utilisons d'abord la méthode : get_object_var qui retourne un tableau
+    // une fois ce tableau acquis, on return la string associé avec la méthode : json_encode
+    return get_object_vars($this);
   }
 
   // Getters
@@ -64,11 +63,11 @@ class Contact implements JsonSerializable
     // Acces au DAO
     $dao = DAO::get();
     $query = $dao->prepare('SELECT * FROM contact WHERE nom = :nom');
-    var_dump($query);
+    //var_dump($query);
     $query->execute([':nom' => $nom]);
     // Récupère le résultat
     $table = $query->fetchAll();
-    var_dump($table);
+    //var_dump($table);
     // Récupération des données dans un array
     $contacts = [];
     foreach ($table as $row) {
@@ -84,12 +83,18 @@ class Contact implements JsonSerializable
 
   // Recherche des contact sachant le début d'un nom ou d'un prénom 
   // $pattern : séquence de lettres d'un début de nom ou prénom
-  public static function readLike(string $pattern): array
-  {
+  public static function readLike(string $pattern): array {
     // 
     ///////////////////////////////////////////////////////
     //  A COMPLETER
     ///////////////////////////////////////////////////////
     // 
+    $dao = DAO::get();
+
+    $query = $dao->prepare("SELECT * FROM contact WHERE nom LIKE ? OR prenom LIKE ?");
+
+    $query->execute(["$pattern%","$pattern%"]);
+
+    return $query->fetchAll();
   }
 }
