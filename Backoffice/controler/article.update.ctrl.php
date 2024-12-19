@@ -4,7 +4,7 @@
 // Inclusion du framework
 include_once('framework/view.fw.php');
 // Inclusion du modèle
-include_once('model/Article.class.php');
+include_once('model/article.class.php');
 
 // 
 //
