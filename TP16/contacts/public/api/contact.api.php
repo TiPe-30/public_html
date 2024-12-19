@@ -30,43 +30,38 @@ if (! isset($_GET['action'])) {
                 $out['error'] = $e->getMessage();
             }
             break;
+            // 
+            // Lecture des contacts sachant un motif
         case 'readLike':
-            $nom = $_GET['pattern'] ?? '';
-            
-            if ($nom == '') {
-                $out['error'] = "nom missing for read";
+            // Il faut un motif
+            $pattern = $_GET['pattern'] ?? '';
+            if ($pattern == '') {
+                $out['error'] = "pattern missing for readLike";
                 break;
             }
-
-            try{
-                $contacts = Contact::readLike($nom);
+            // Lance la demande
+            try {
+                $contacts = Contact::readLike($pattern);
                 // Passe tous les objets en résultat
                 $out['contacts'] = $contacts;
-            }catch (Exception $e) {
+            } catch (Exception $e) {
                 // Retourne le message d'erreur
                 $out['error'] = $e->getMessage();
             }
-
             break;
-            // 
-            ///////////////////////////////////////////////////////
-            //  A COMPLETER
-            ///////////////////////////////////////////////////////
-            // 
+            //
         default:
             $out['error'] = "incorrect action '$action'";
     }
 }
 
-if (isset($out['error'])){
-    header('HTTP/1.1 400 Bad Request');
-}
-
-header('Content-Type: application/json; charset=utf-8');
-print(json_encode($out['contacts']));
 // Sort la réponse
 // 
-///////////////////////////////////////////////////////
-//  A COMPLETER
-///////////////////////////////////////////////////////
-// 
+// Change le type de réponse en cas d'erreur
+if (isset($out['error'])) {
+    header("HTTP/1.1 400 Bad Request");
+}
+// Indique dans le header que l'on sort du JSON
+header('Content-Type: application/json; charset=utf-8');
+print(json_encode($out));
+//
