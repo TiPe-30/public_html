@@ -20,7 +20,27 @@
     <h2>Accès à un article</h2>
     <form method="get">
       <input type="hidden" name="ctrl" value="article.read">
-      <!--  COMPLETER LE FORMULAIRE -->
+      <!--  -->
+      <p>
+        <label for="ref">Référence</label>
+        <input type="number" id="ref" name="ref" value="<?= $article->getRef() ?>">
+      </p>
+      <p>
+        <label for="libelle">Libéllé</label>
+        <textarea id="libelle" name="libelle" rows="1" cols="30" readonly><?= $article->getLibelle() ?></textarea>
+      </p>
+      <p>
+        <label for="categorie">Catégorie</label>
+        <input type="text" id="categorie" name="categorie" value="<?= $article->getCategorie()->getNom() ?>" readonly>
+      </p>
+      <p>
+        <label for="prix">Prix</label>
+        <input type="number" step=".01" id="prix" name="prix" value="<?= $article->getPrix() ?>" readonly>
+      </p>
+      <p>
+        <img src="<?= $article->getImageURL() ?>" alt="Photo produit">
+      </p>
+      <button type="submit" name="add">Rechercher</button>
       <!--  -->
     </form>
     <?php if (isset($error) && count($error) != 0) : ?>

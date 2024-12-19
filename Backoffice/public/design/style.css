@@ -123,10 +123,11 @@ main form button {
   margin: auto;
 }
 
+/* Plusieurs boutons */
+
 /* Taille de l'image */
-main img {
-  display: block;
-  width: 40%;
+main form div {
+  display: flex;
   margin: auto;
 }
 

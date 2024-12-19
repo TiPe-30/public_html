@@ -58,10 +58,28 @@ class Contact {
 
   // Accès à une liste de contacts étant donné une séquence de caractères
   static readLike(pattern, onAnswser) {
-    // 
-    ///////////////////////////////////////////////////////
-    //  A COMPLETER
-    ///////////////////////////////////////////////////////
+        // 
+    // Demande au DAO une lecture
+    const params = {
+      'action': 'readLike',
+      'pattern': pattern
+    }
+    dao.query(params,
+      function (answer) {
+        // Donne le bon type à tous les contacts
+        const list = [];
+        // Cas d'erreur 
+        if ('error' in answer) {
+          alert("Error: " + answer.error);
+        } else {
+          for (let contact of answer.contacts) {
+            list.push(new Contact(contact));
+          };
+          // Appel de la callback avec la liste des objets
+          onAnswser(list);
+        }
+      }
+    );
     //  Fin de readLike
   }
 }

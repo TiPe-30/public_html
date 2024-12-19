@@ -31,7 +31,7 @@ if (! isset($_GET['action'])) {
             }
             break;
         case 'readLike':
-            $nom = $_GET['nom'] ?? '';
+            $nom = $_GET['pattern'] ?? '';
             
             if ($nom == '') {
                 $out['error'] = "nom missing for read";
@@ -57,7 +57,13 @@ if (! isset($_GET['action'])) {
             $out['error'] = "incorrect action '$action'";
     }
 }
-var_dump(json_encode($out['contacts']));
+
+if (isset($out['error'])){
+    header('HTTP/1.1 400 Bad Request');
+}
+
+header('Content-Type: application/json; charset=utf-8');
+print(json_encode($out['contacts']));
 // Sort la réponse
 // 
 ///////////////////////////////////////////////////////

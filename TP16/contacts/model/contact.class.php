@@ -89,11 +89,26 @@ class Contact implements JsonSerializable
     //  A COMPLETER
     ///////////////////////////////////////////////////////
     // 
+    // 
+    // Acces au DAO
     $dao = DAO::get();
-
-    $query = $dao->prepare("SELECT * FROM contact WHERE nom LIKE ? OR prenom LIKE ?");
-
-    $query->execute(["$pattern%","$pattern%"]);
+    $query = $dao->prepare('SELECT * FROM contact WHERE nom LIKE :nom OR prenom LIKE :prenom');
+    $pattern = $pattern . '%';
+    // Exécute la requête SQL en lui passant les paramètres
+    $query->execute([':nom' => $pattern, ':prenom' => $pattern]);
+    // Récupère le résultat
+    $table = $query->fetchAll();
+    // Récupération des données dans un array
+    $contacts = [];
+    foreach ($table as $row) {
+      $contact = new Contact($row['prenom'], $row['nom'], $row['mobile']);
+      // Ajoute l'id, car il n'est pas dans le constructeur
+      $contact->id = $row['id'];
+      // Ajoute le nouvel objets à la liste
+      $contacts[] = $contact;
+    }
+    return $contacts;
+    // fin méthode readLike 
 
     return $query->fetchAll();
   }

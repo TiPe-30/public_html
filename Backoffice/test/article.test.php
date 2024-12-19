@@ -1,7 +1,7 @@
 <?php
 // Test de la classe Article
-require_once(__DIR__.'/../model/article.class.php');
-require_once(__DIR__.'/../model/categorie.class.php');
+require_once(__DIR__.'/../model/Article.class.php');
+require_once(__DIR__.'/../model/Categorie.class.php');
 
 // Affiche un texte avec des couleurs ANSI dans le shell
 function printCol(string $text,string $col='red') {
@@ -120,3 +120,6 @@ try {
   exit($e->getMessage()."\n");
 }
 
+
+
+?>

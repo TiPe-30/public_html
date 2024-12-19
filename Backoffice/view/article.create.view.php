@@ -16,8 +16,7 @@
   </aside>
   <main>
     <h2>Ajout d'un nouvel article</h2>
-    <form enctype="multipart/form-data" method="post">
-      <input type="hidden" name="ctrl" value="article.create">
+    <form action="?ctrl=article.create" enctype="multipart/form-data" method="post">
       <p>
         <label for="ref">Référence</label>
         <input type="number" id="ref" name="ref" value="<?= $ref ?>">

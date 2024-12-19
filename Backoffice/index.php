@@ -7,7 +7,7 @@ $ctrl = $_REQUEST['ctrl'] ?? 'main';
 
 // Liste des controleurs possibles
 // Cette liste permet d'être sûr de ne pas charger de fichier inconnu
-const CTRLS = ['main', 'article.create', 'article.delete', 'article.read', 'article.update', 'login', 'menu'];
+const CTRLS = array('main', 'article.create', 'article.delete', 'article.read', 'article.update', 'login', 'logout','menu');
 
 // Ouvre toujours une session
 session_start();
