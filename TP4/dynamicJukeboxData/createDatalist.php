@@ -1,7 +1,5 @@
 <?php
-    class CreateDatalist{
-        private string
-    }
+
     parcour_dir("./data");
     $chaine_afficher = '';
     $chaine_presente = array();

@@ -10,6 +10,7 @@
     <header>
     </header>
     <?php
+    // ajout d'un commentaire
         // Utilisation directe du nom de fichier sans encodage
         $music = './data/' . $_GET['music'];
     ?>
